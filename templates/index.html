@@ -3,67 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
     <title>Input and Submit Button Interface</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-        }
-        .title{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .container2{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-        textarea {
-            padding: 10px;
-            font-size: 16px;
-            margin-right: 10px;
-            width: 120%;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-        }
-        .button-action{
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-        }
-        .result{
-            display: flex;
-            flex-direction: column;
-        }
-        .result-text{
-           padding-top: 25px;
-        }
-        .result-content{
-            border: 1px solid black;
-            border-radius: 2px;
-            padding: 10px;
-        }
-    </style>
 </head>
 <body>
 
 <div class="container">
     <!-- <input type="text" id="userInput" placeholder="Enter something"> -->
     <div id="form">
-        <h1 class="title">Sentiment Analysis</h1>
+        <h1 class="title">Sentiment Analysis System</h1>
         <div class="container2">
             <textarea id="userInput" placeholder="Enter something"></textarea>
             <div class="button-action">
@@ -79,37 +28,6 @@
         </div>
     </div>
 </div>
-
-<script>
-
-    function clearInput(){
-        document.getElementById('userInput').value = '';
-        document.getElementById('responseMessage').textContent  = '';
-    }
-
-
-    function submitInput() {
-        const inputString = document.getElementById('userInput').value;
-
-        fetch('http://127.0.0.1:8004/chatbot', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'text/plain'
-            },
-            body: inputString
-        })
-        .then(response => response.text())
-        .then(data => {
-            const responseMessage = document.getElementById('responseMessage');
-
-            responseMessage.textContent = "This sentence is mostly "+ data;
-            responseMessage.style.color = 'green';
-        })
-        .catch(error => console.error('Error:', error));
-    }
-
-    
-</script>
 
 </body>
 </html>
