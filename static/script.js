@@ -8,7 +8,7 @@ function clearInput(){
 function submitInput() {
     const inputString = document.getElementById('userInput').value;
 
-    fetch('http://127.0.0.1:8004/chatbot', {
+    fetch('https://sentiment-analysis-lmeaghdm5a-as.a.run.app/chatbot', {
         method: 'POST',
         headers: {
             'Content-Type': 'text/plain'

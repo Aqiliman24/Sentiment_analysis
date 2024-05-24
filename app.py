@@ -3,8 +3,10 @@ from openAI import preprocess_text, get_sentiment_scores,predict_overall_sentime
 from dotenv import load_dotenv
 import json
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app) 
 
 @app.route("/")
 def index():
