@@ -4,19 +4,25 @@ import os
 from openai import OpenAI
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.feature_extraction import DictVectorizer
+import re
 
+
+# Load env file for the api key and desire port
 load_dotenv()
 OpenAI.api_key = os.getenv("OPENAI_API_KEY")
 
 def preprocess_text(text):
-    import re
+    
     # Convert to lowercase
-    text = text.lower()
-    return text
+    preprocess_result_text = text.lower()
+    return preprocess_result_text
 
+
+# -------------------------------------------------------------------------------openAI Phase
 def get_sentiment_scores(text):
-    client = OpenAI()
 
+    # Connect to OpenAI API
+    client = OpenAI()
     response = client.chat.completions.create(
         model="gpt-3.5-turbo-1106",
         messages=[
@@ -47,17 +53,18 @@ def get_sentiment_scores(text):
         )
     sentiment = response.choices[0].message.content
 
-    import re
+    # To Find the pattern of positive, negative and neutral from the answer provided from the OpenAI
     pattern = r'\b(positive|negative|neutral)\b'
     match = re.findall(pattern, sentiment.lower())
     print ("in open AI :" ,match)
     return match
 
+# -------------------------------------------------------------------------------openAI Phase
 
-# ----------------------------------------------------------ML Phase
 
 
-# Function to predict overall sentiment from a list of sentiment scores
+# -------------------------------------------------------------------------------ML Phase
+# Function to predict overall sentiment from a list of sentiment result
 def predict_overall_sentiment(sentiments):
     
     # Generate training data
@@ -95,31 +102,11 @@ def predict_overall_sentiment(sentiments):
     prediction = clf.predict(X_input)
     return prediction[0]
 
+# -------------------------------------------------------------------------------ML Phase
 
 
 
-# preprocessed_text = preprocess_text("Today is my last day at school, althought im happy im finally finishing the school but deep in my heart still sad that i have to part my way with my friend.")
-# sentiment = get_sentiment_scores(preprocessed_text)
-# print(sentiment)
-# overall_score = predict_overall_sentiment(sentiment)
-
-# print (overall_score)
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# -------------------------------------------------------------------if using streamlit
+# -------------------------------------------------------------------------------if using streamlit
 # def main():
 #     st.title("Sentiment Analyzer")
 #     user_input = st.text_area("Enter a sentence or paragraph:")
@@ -137,5 +124,6 @@ def predict_overall_sentiment(sentiments):
 # if __name__ == "__main__":
 #     main()
 
+# -------------------------------------------------------------------------------if using streamlit
 
 

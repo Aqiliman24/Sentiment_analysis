@@ -14,12 +14,12 @@ def index():
 			<!DOCTYPE html>
 			<html>
 			<head>
-				<title>Consult GPT Chatbot</title>
+				<title>Sentiment analyzer</title>
 			</head>
 			<body>
-				<h1>Consult GPT Chatbot</h1>
-				<p>Welcome to chatbot, if you see this page meaning the API is working!</p>
-                <p>Please use this link to send data <a href="https://127.0.0.1:8004/chatbot_live">http://127.0.0.1:8004/chatbot_live</a></p
+				<h1>Sentiment analyzer</h1>
+				<p>Welcome to Sentiment analyzer, if you see this page meaning the app is working up and online!</p>
+                <p>Please use this link to send data <a href="https://sentiment-analysis-lmeaghdm5a-as.a.run.app/chatbot_live">https://sentiment-analysis-lmeaghdm5a-as.a.run.app/chatbot_live</a></p
 			</body>
 			</html>""")
 
@@ -33,12 +33,12 @@ def chat():
     text = request.data.decode('utf-8')
 
     # Send message to the openAI
-    incoming_msg = text
-    preprocess = preprocess_text(incoming_msg)
-    get_sentiment_score = get_sentiment_scores(preprocess)
+    preprocess_result_text = preprocess_text(text)
+    get_sentiment_score = get_sentiment_scores(preprocess_result_text)
+
+    # Send message to the ML Decision Tree
     answer = predict_overall_sentiment(get_sentiment_score)
 
-    print(answer)
     return (answer)
 
 if __name__ == '__main__':

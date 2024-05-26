@@ -1,13 +1,10 @@
 
-function clearInput(){
-    document.getElementById('userInput').value = '';
-    document.getElementById('responseMessage').textContent  = '';
-}
-
-
+  // Get Input from the Frontend when submit button clicked
 function submitInput() {
+  
     const inputString = document.getElementById('userInput').value;
 
+    // Sending data to Backend
     fetch('https://sentiment-analysis-lmeaghdm5a-as.a.run.app/chatbot', {
         method: 'POST',
         headers: {
@@ -23,4 +20,10 @@ function submitInput() {
         responseMessage.style.color = 'green';
     })
     .catch(error => console.error('Error:', error));
+}
+
+// Clear all input field when clear button clicked
+function clearInput(){
+    document.getElementById('userInput').value = '';
+    document.getElementById('responseMessage').textContent  = '';
 }

@@ -1,5 +1,5 @@
 FROM python:3.10.6
-WORKDIR /DeepLearningModelFaceImages
+WORKDIR /AI ENGINEER
 
 ENV PORT = PORT
 
@@ -9,5 +9,3 @@ RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 
 COPY . .
 CMD ["python","app.py"]
-
-
