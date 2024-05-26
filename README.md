@@ -17,7 +17,7 @@ The OpenAI language models, including GPT-3.5 Turbo, are recognized as some of t
 A predefined Decision Tree classifier from Python libraries such as scikit-learn provides an efficient way to implement machine learning classification without the need for a training phase. This is particularly advantageous for projects with tight deadlines.
 
 **Purpose in Sentiment Analysis**
-In sentiment analysis, a Decision Tree classifier can quickly predict the sentiment of a given text based on predefined rules. By using an existing model, we eliminate the time-consuming process of training and tuning, thus saving valuable time.
+In sentiment analysis, a Decision Tree classifier can quickly predict the sentiment of a given text based on predefined thresholds. By using an existing model, we eliminate the time-consuming process of training and tuning, thus saving valuable time.
 
 **Advantages :**
 Efficiency: No need for a training phase, which is ideal for short-term projects.
