@@ -15,9 +15,19 @@ function submitInput() {
     .then(response => response.text())
     .then(data => {
         const responseMessage = document.getElementById('responseMessage');
-
-        responseMessage.textContent = "This sentence is mostly "+ data;
-        responseMessage.style.color = 'green';
+        if (data.includes('positive')) {
+            responseMessage.textContent = "This sentence is mostly " + data;
+            responseMessage.style.color = 'green';
+        } else if (data.includes('negative')) {
+            responseMessage.textContent = "This sentence is mostly " + data;
+            responseMessage.style.color = 'red';
+        } else if (data.includes('neutral')) {
+            responseMessage.textContent = "This sentence is mostly " + data;
+            responseMessage.style.color = 'gray';
+        } else {
+            responseMessage.textContent = data;
+            responseMessage.style.color = 'black'; // default or for other cases
+        }
     })
     .catch(error => console.error('Error:', error));
 }

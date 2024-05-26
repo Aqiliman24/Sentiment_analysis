@@ -15,6 +15,7 @@ def preprocess_text(text):
     
     # Convert to lowercase
     preprocess_result_text = text.lower()
+
     return preprocess_result_text
 
 
@@ -66,41 +67,47 @@ def get_sentiment_scores(text):
 # -------------------------------------------------------------------------------ML Phase
 # Function to predict overall sentiment from a list of sentiment result
 def predict_overall_sentiment(sentiments):
+    # Cheking if the sentiments contain correct data
+    if (len(sentiments) == 0):
+        errormessage = "This word/sentences cannot be processed. Use another word/sentences"
+        return errormessage
     
-    # Generate training data
-    X_train = []
-    y_train = sentiments
-
-    for text in sentiments:
-        sentiment_scores = sentiments
-        sentiment_counts = {'positive': 0, 'negative': 0, 'neutral': 0}
+    else:
         
-        for sentiment in sentiment_scores:
+        # Generate training data
+        X_train = []
+        y_train = sentiments
+
+        for text in sentiments:
+            sentiment_scores = sentiments
+            sentiment_counts = {'positive': 0, 'negative': 0, 'neutral': 0}
+            
+            for sentiment in sentiment_scores:
+                if sentiment in sentiment_counts:
+                    sentiment_counts[sentiment] += 1
+            X_train.append(sentiment_counts)
+        print("sentiment count :",sentiment_counts)
+
+        # Vectorize the training data
+        vectorizer = DictVectorizer(sparse=False)
+        X_train_vectorized = vectorizer.fit_transform(X_train)
+
+        # Train the decision tree classifier
+        clf = DecisionTreeClassifier()
+        clf.fit(X_train_vectorized, y_train)
+        
+        # Count occurrences of each sentiment
+        sentiment_counts = {'positive': 0, 'negative': 0, 'neutral': 0}
+        for sentiment in sentiments:
             if sentiment in sentiment_counts:
                 sentiment_counts[sentiment] += 1
-        X_train.append(sentiment_counts)
-    print("sentiment count :",sentiment_counts)
 
-    # Vectorize the training data
-    vectorizer = DictVectorizer(sparse=False)
-    X_train_vectorized = vectorizer.fit_transform(X_train)
+        # Vectorize the input data
+        X_input = vectorizer.transform([sentiment_counts])
 
-    # Train the decision tree classifier
-    clf = DecisionTreeClassifier()
-    clf.fit(X_train_vectorized, y_train)
-    
-    # Count occurrences of each sentiment
-    sentiment_counts = {'positive': 0, 'negative': 0, 'neutral': 0}
-    for sentiment in sentiments:
-        if sentiment in sentiment_counts:
-            sentiment_counts[sentiment] += 1
-
-    # Vectorize the input data
-    X_input = vectorizer.transform([sentiment_counts])
-
-    # Predict the overall sentiment
-    prediction = clf.predict(X_input)
-    return prediction[0]
+        # Predict the overall sentiment
+        prediction = clf.predict(X_input)
+        return prediction[0]
 
 # -------------------------------------------------------------------------------ML Phase
 
