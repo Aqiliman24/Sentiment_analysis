@@ -20,8 +20,8 @@ A predefined Decision Tree classifier from Python libraries such as scikit-learn
 In sentiment analysis, a Decision Tree classifier can quickly predict the sentiment of a given text based on predefined thresholds. By using an existing model, we eliminate the time-consuming process of training and tuning, thus saving valuable time.
 
 **Advantages :**
-Efficiency: No need for a training phase, which is ideal for short-term projects.
-Feature Importance: Can utilize important features for accurate predictions.
+Efficiency, No need for a training phase, which is ideal for short-term projects.
+It also can utilize important features for accurate predictions.
 
 
 **Deployment With Flask, Docker And Gcloud**
