@@ -44,3 +44,6 @@ I chose Docker for deployment due to its significant advantages in portability, 
 I also chose Google Cloud for deploying applications due to its robust and scalable platform, which includes managed services that optimize performance and cost-efficiency. Google Cloud's auto-scaling capabilities automatically adjust resources based on application demand, ensuring that applications run efficiently and can handle varying loads.
 
 By combining Docker and Google Cloud, I leverage a powerful and efficient approach to application deployment, capitalizing on the strengths of both technologies. Docker ensures that applications are portable and behave consistently across different environments, while also providing efficient resource utilization and simplified deployment processes. On the other hand, Google Cloud offers scalable, managed services that optimize performance and cost-efficiency, along with robust security and global infrastructure. This synergy facilitates rapid development and deployment, ensuring that applications can be quickly and reliably moved from development to production environments.
+
+
+System App can be access on : https://sentiment-analysis-lmeaghdm5a-as.a.run.app/chatbot_live
