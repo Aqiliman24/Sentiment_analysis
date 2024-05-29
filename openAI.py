@@ -31,7 +31,7 @@ def get_sentiment_scores(text):
             "role": "system",
             "content": [
                 {
-                "text": """A system that identify positive,negetive,neutral comment or word. A system that called Sentiment Analyzer.""",
+                "text": """A system that identify positive,negetive,neutral each comment or word. A system that called Sentiment Analyzer.""",
                 "type": "text"
                 }
             ]
@@ -53,12 +53,26 @@ def get_sentiment_scores(text):
         presence_penalty=0
         )
     sentiment = response.choices[0].message.content
+    print(sentiment)
 
     # To Find the pattern of positive, negative and neutral from the answer provided from the OpenAI
-    pattern = r'\b(positive|negative|neutral)\b'
+    pattern = r'\b(positive|negative|neutral|positif|negatif|netral)\b'
     match = re.findall(pattern, sentiment.lower())
+    translated_matches = []
+    for match in match:
+        if match == "positif":
+            translated_matches.append("positive")
+        elif match == "negatif":
+            translated_matches.append("negative")
+        elif match == "netral":
+            translated_matches.append("neutral")
+        else:
+            translated_matches.append(match)
+    
+
+    print(translated_matches)
     print ("in open AI :" ,match)
-    return match
+    return translated_matches
 
 # -------------------------------------------------------------------------------openAI Phase
 

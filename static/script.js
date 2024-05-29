@@ -4,8 +4,11 @@ function submitInput() {
   
     const inputString = document.getElementById('userInput').value;
 
+
+    // live api - https://sentiment-analysis-lmeaghdm5a-as.a.run.app/chatbot
+    // local api - http://127.0.0.1:8004/chatbot
     // Sending data to Backend
-    fetch('https://sentiment-analysis-lmeaghdm5a-as.a.run.app/chatbot', {
+    fetch('http://127.0.0.1:8004/chatbot', {
         method: 'POST',
         headers: {
             'Content-Type': 'text/plain'
