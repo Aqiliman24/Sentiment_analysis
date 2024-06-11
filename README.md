@@ -1,5 +1,25 @@
 # Sentiment Analyzer
 
+#### Run The App Locally
+
+## Build the image
+
+```sh
+docker image build -t sentiment_analysis . 
+```
+
+- need env file to run
+- Please rename the env file into .env
+- key in api key and port=8004
+- If need api key, do let me know ;)
+
+```sh
+docker run -p 8004:8004 --env-file .env sentiment_analysis
+```
+
+- visit url http://localhost:8004/chatbot_live
+
+
 **Reason for Choosing OpenAI GPT-3.5 Turbo**
 
 **Compatibility and Ease of Integration**
